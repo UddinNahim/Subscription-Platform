@@ -42,11 +42,11 @@ def my_login(request):
             user = authenticate(request,username=username, password=password)
             if user is not None and user.is_writer == True: 
                 login(request, user)
-                return HttpResponse('Login successful! Welcome, Writer!')
+                return  redirect('writer-dashboard')
 
             if user is not None and user.is_writer == False:
                 login(request, user)
-                return HttpResponse('Login successful! Welcome, Reader!')
+                return redirect('client-dashboard')
 
     context = {
             'LoginForm': form,

@@ -1,0 +1,6 @@
+# Define the alias
+alias dev := runserver
+
+# The actual recipe
+runserver:
+    uv run python manage.py runserver
