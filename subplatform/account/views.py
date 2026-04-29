@@ -4,7 +4,7 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 def home(request):
@@ -54,3 +54,8 @@ def my_login(request):
 
         
     return render(request, 'account/my-login.html', context)
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('my-login')
