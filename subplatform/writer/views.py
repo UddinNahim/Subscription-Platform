@@ -42,8 +42,10 @@ def my_articles(request):
 
 @login_required(login_url='my-login')
 def update_article(request, pk):
-
-    article = Article.objects.get(id=pk)
+    try:
+        article = Article.objects.get(id=pk, user=request.user) 
+    except:  # noqa: E722
+        return redirect('my-articles') 
 
     form = ArticleForm(instance=article)
 
@@ -61,3 +63,18 @@ def update_article(request, pk):
 @login_required(login_url='my-login')
 def account_management(request):
     pass
+
+
+@login_required(login_url='my-login')
+def delete_article(request, pk):
+    try:
+        article = Article.objects.get(id=pk, user=request.user) 
+    except:  # noqa: E722
+        return redirect('my-articles') 
+
+    if request.method == 'POST':
+        article.delete()
+        return redirect('my-articles')
+
+    context = {'article': article}
+    return render(request, 'writer/delete-article.html', context)

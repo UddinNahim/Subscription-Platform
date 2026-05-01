@@ -13,3 +13,6 @@ class Article(models.Model):
 
     user = models.ForeignKey(CustomUser, max_length=10 ,  on_delete=models.CASCADE, null=True)
 
+    def __str__(self):
+        return self.title
+
