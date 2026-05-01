@@ -1,0 +1,24 @@
+{% extends 'writer/navbar.html' %}
+
+{% block content %}
+    <h1 class="text-3xl font-bold mb-4">My Articles</h1>
+    <br>
+    {% for article in AllArticles %}
+        <div class="container bg-white shadow-md p-5 form-layout">
+            <h3>{{ article.title }}</h3>
+            {{ article.content }}
+            <br> <br>
+
+            {{ article.date_posted }}
+
+            <br> <br>
+            <a href="{% url 'update-article' article.id %}" class="btn btn-primary">Update Article</a>
+
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}
+
+
