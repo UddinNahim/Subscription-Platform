@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
-def home(request):
+def index(request):
     return render(request, 'account/index.html')
 
 
