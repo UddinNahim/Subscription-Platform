@@ -1,6 +1,11 @@
 # Define the alias
 alias dev := runserver
+alias migrate := migrations
 
 # The actual recipe
 runserver:
     uv run python manage.py runserver
+
+migrations:
+    uv run python manage.py makemigrations
+    uv run python manage.py migrate
